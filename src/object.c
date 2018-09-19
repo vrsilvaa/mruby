@@ -607,7 +607,7 @@ mrb_check_string_type(mrb_state *mrb, mrb_value str)
 }
 
 MRB_API mrb_value
-mrb_array_type(mrb_state *mrb, mrb_value ary)
+mrb_ensure_array_type(mrb_state *mrb, mrb_value ary)
 {
   if (!mrb_array_p(ary)) {
     mrb_raisef(mrb, E_TYPE_ERROR, "%S cannot be converted to Array",

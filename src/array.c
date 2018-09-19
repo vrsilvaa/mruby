@@ -1072,7 +1072,7 @@ mrb_ary_splat(mrb_state *mrb, mrb_value v)
   if (mrb_nil_p(a)) {
     return mrb_ary_new_from_values(mrb, 1, &v);
   }
-  mrb_array_type(mrb, a);
+  mrb_ensure_array_type(mrb, a);
   return a;
 }
 
