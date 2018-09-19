@@ -1,3 +1,4 @@
+# coding: cp932
 class Array
   ##
   # call-seq:
@@ -755,16 +756,6 @@ class Array
       return self.__ary_index(val)
     end
     nil
-  end
-
-  ##
-  #  call-seq:
-  #     ary.to_ary -> ary
-  #
-  #  Returns +self+.
-  #
-  def to_ary
-    self
   end
 
   ##
