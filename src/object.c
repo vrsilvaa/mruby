@@ -590,7 +590,7 @@ mrb_to_str(mrb_state *mrb, mrb_value val)
 }
 
 MRB_API mrb_value
-mrb_string_type(mrb_state *mrb, mrb_value str)
+mrb_ensure_string_type(mrb_state *mrb, mrb_value str)
 {
   if (!mrb_string_p(str)) {
     mrb_raisef(mrb, E_TYPE_ERROR, "%S cannot be converted to String",
