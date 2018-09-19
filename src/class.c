@@ -504,10 +504,17 @@ check_type(mrb_state *mrb, mrb_value val, enum mrb_vtype t, const char *c, const
   return tmp;
 }
 
+#define CHECK_TYPE(mrb, val, t, c) do { \
+  if (mrb_type(val) != (t)) {\
+    mrb_raisef(mrb, E_TYPE_ERROR, "expected %S", mrb_str_new_lit(mrb, c));\
+  }\
+} while (0)
+
 static mrb_value
 to_str(mrb_state *mrb, mrb_value val)
 {
-  return check_type(mrb, val, MRB_TT_STRING, "String", "to_str");
+  CHECK_TYPE(mrb, val, MRB_TT_STRING, "String");
+  return val;
 }
 
 static mrb_value
