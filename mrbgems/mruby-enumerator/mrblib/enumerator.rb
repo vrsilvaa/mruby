@@ -157,12 +157,10 @@ class Enumerator
   def with_index(offset=0, &block)
     return to_enum :with_index, offset unless block
 
-    offset = if offset.nil?
-      0
-    elsif offset.respond_to?(:to_int)
-      offset.to_int
+    if offset.nil?
+      offset = 0
     else
-      raise TypeError, "no implicit conversion of #{offset.class} into Integer"
+      offset = offset.__to_int
     end
 
     n = offset - 1
@@ -623,9 +621,7 @@ module Enumerable
   # use Enumerator to use infinite sequence
   def zip(*args, &block)
     args = args.map do |a|
-      if a.respond_to?(:to_ary)
-        a.to_ary.to_enum(:each)
-      elsif a.respond_to?(:each)
+      if a.respond_to?(:each)
         a.to_enum(:each)
       else
         raise TypeError, "wrong argument type #{a.class} (must respond to :each)"
